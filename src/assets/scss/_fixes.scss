@@ -1,0 +1,25 @@
+a,
+button,
+.mat-icon,
+.ticketUserHeadlineImage {
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.form-control {
+  &:focus {
+    border-color: $color-client-rot;
+    box-shadow: none
+  }
+}
+
+.cdk-global-scrollblock {
+  overflow-y: visible;
+}
+
+.ng-animating div mat-accordion mat-expansion-panel div.mat-expansion-panel-content {
+  height: 0;
+  visibility: hidden;
+}

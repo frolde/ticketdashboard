@@ -1,0 +1,29 @@
+.sortContainer {
+  display: flex;
+  justify-content: flex-end;
+  opacity: .75;
+
+  mat-form-field {
+    width: 215px;
+    opacity: .66;
+  }
+
+  .viewToggler {
+    color: $color-font;
+    align-self: center;
+    font-size: 1.25rem;
+    padding: 0 0 5px 1rem;
+    opacity: .66;
+    transition: opacity 250ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}

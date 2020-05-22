@@ -1,0 +1,53 @@
+<main class="main--employee-detail">
+
+    <app-messages></app-messages>
+
+    <div class="overViewWrapper container" [@fadeIn]='in'>
+
+        <div class="employee-detail--picture" [ngStyle]="{background: 'url(../../assets/img/users/' + employee.user_image + ') no-repeat center/100%'}"></div>
+
+        <mat-icon class="go-back-arrow" (click)="backClicked()">arrow_back</mat-icon>
+        <h1 class="employee-detail--headline">{{employee.first_name}} {{employee.last_name}} <span class="ad-username">({{employee.user_ad}})</span></h1>
+        <hr class="employee-detail--headline-underline">
+
+        <table mat-table [dataSource]="dataSource" matSort [hidden]="(dataSource.data | userspecificTickets:employee).length === 0">
+
+            <!-- Link Column -->
+            <ng-container matColumnDef="link">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Link</th>
+                <td mat-cell *matCellDef="let ticket">
+                    <span class="source-icon source-icon--{{ticket.source}}"></span>
+                    <a href="{{ticket.link}}" target="_blank">{{ticket.link}}</a>
+                </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let ticket">
+                    <mat-icon>delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[25, 50, 100]" [hidden]="(dataSource.data | userspecificTickets:employee).length === 0 || (dataSource.data | userspecificTickets:employee).length <= 25"></mat-paginator>
+
+        <div class="row" *ngIf="(dataSource.data | userspecificTickets:employee).length === 0">
+            <div class="col empty-row">
+                <strong>Keine offenen Tickets gefunden!</strong>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col button-row">
+                <button mat-fab (click)="openTicketDialog()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</main>

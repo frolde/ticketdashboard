@@ -1,0 +1,65 @@
+@mixin animation($animation-target: all) {
+  animation: $animation-target .4s ease-in-out;
+}
+
+@mixin source-icons() {
+  span {
+    &.source-icon {
+      display: inline-block;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-right: 0.35rem;
+      vertical-align: top;
+      border-radius: 50%;
+      background-color: transparent;
+
+      &.source-icon--dashboard {
+        background-color: $color-client-rot;
+      }
+    }
+  }
+}
+
+@mixin datatable() {
+  .mat-table {
+    width: 100%;
+
+    .mat-header-cell {
+      &.mat-column-delete {
+        padding-left: 24px;
+        padding-right: 24px;
+        width: 4rem;
+      }
+    }
+
+    .mat-cell {
+      &.mat-column-link {
+        @include source-icons();
+      }
+
+      &.mat-column-delete {
+        padding-right: 0;
+        text-align: center;
+
+        .mat-icon {
+          user-select: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin add-ticket-button() {
+  .button-row {
+    margin-top: 2rem;
+    text-align: center;
+
+    .mat-fab {
+      background-color: $color-client-rot;
+    }
+  }
+}

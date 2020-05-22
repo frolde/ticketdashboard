@@ -1,0 +1,48 @@
+body {
+  font-family: $defaultfont;
+  color: $color-font;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: $color-background;
+  position: relative;
+
+  main {
+    padding: 2.5rem 0 2.5rem;
+
+    .overViewWrapper {
+      padding: .5rem 1rem;
+    }
+
+    .mat-icon {
+      line-height: 2.5rem;
+    }
+
+    button {
+      .mat-icon {
+        line-height: 1;
+      }
+    }
+
+    a {
+      color: $color-client-rot;
+      text-decoration: none;
+      transition: all .4s ease;
+
+      &:hover {
+        color: $color-client-rot-accent;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+#easteregg {
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  height: 100px;
+  transition: all 400ms ease;
+  &.active {
+    bottom: -12px;
+  }
+}

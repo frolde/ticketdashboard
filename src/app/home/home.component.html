@@ -1,0 +1,35 @@
+<div class="container-fluid homepageWrapper">
+
+    <div class="container homepageContainer">
+        <div class="row contentRow">
+            <div class="col-lg-4 singleContentTile singleContentTile--main">
+                <div class="tileInner titleTile">
+                    <div class="titleContainer">
+                        <img src="/assets/img/logo.png" alt="Logo">
+                        <h1>Dashboard</h1>
+                        <span class="currentState">Aktuell sind {{tickets.length}} Tickets offen.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 singleContentTile" routerLink="/overview">
+                <div class="tileInner">
+                    <div class="innerContainer">
+                        <span class="homepageIcon"><mat-icon>view_day</mat-icon></span>
+                        <h2>Übersicht <mat-icon>chevron_right</mat-icon></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 singleContentTile" routerLink="/users">
+                <div class="tileInner">
+                    <div class="innerContainer">
+                        <span class="homepageIcon"><mat-icon>person</mat-icon></span>
+                        <h2>Benutzer <mat-icon>chevron_right</mat-icon></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img id="easteregg" src="/assets/img/vendor/dancing.gif">
+
+</div>

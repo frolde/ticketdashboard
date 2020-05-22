@@ -1,0 +1,14 @@
+.btn {
+  &.btn-client {
+    transition: all 0.2s ease;
+    display: inline-block;
+    padding: 7.5px 30px;
+    background-color: $color-client-rot;
+    color: $white;
+
+    &:hover {
+      background-color: #71001f;
+      text-decoration: none;
+    }
+  }
+}

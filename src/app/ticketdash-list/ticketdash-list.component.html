@@ -1,0 +1,94 @@
+<main>
+  <div class="overViewWrapper container">
+
+    <div class="ticketOverview" id="ticketOverviewAccordion">
+
+
+      <app-messages></app-messages>
+
+      <div class="sortContainer">
+        <mat-form-field>
+          <mat-select [(value)]="sort_selected" (selectionChange)="sortEmployees($event.value)">
+            <mat-option value="firstname_alphabetical-asc">Vorname (Aufsteigend)</mat-option>
+            <mat-option value="firstname_alphabetical-desc">Vorname (Absteigend)</mat-option>
+            <mat-option value="lastname_alphabetical-asc">Nachname (Aufsteigend)</mat-option>
+            <mat-option value="lastname_alphabetical-desc">Nachname (Absteigend)</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="viewToggler" routerLink="/users"><mat-icon>view_module</mat-icon></span>
+      </div>
+
+
+      <div [@fadeIn]='in'>
+        <mat-accordion class="ticketUserOverview">
+
+          <mat-expansion-panel class="ticketUser" *ngFor="let employee of employees; let i = index;">
+            <mat-expansion-panel-header class="ticketUserHeadline" id="heading{{i}}"
+                                        (click)="updateDataSourceByID(employee.id)"
+                                        [collapsedHeight]="'5rem'" [expandedHeight]="'5rem'">
+              <mat-panel-title class="ticketUserHeadline-container">
+                <div class="row ticketUserHeadline-container-row">
+                  <div class="ticketUserHeadlineName col-10">
+                    <div class="ticketUserHeadlineImage" appClickStopPropagation routerLink="/users/{{employee.user_ad}}"
+                         [ngStyle]="{background: 'url(../../assets/img/users/' + employee.user_image + ') no-repeat center/100%'}"></div>
+                    <strong>{{employee.first_name}} {{employee.last_name}}
+                      <mat-icon appClickStopPropagation routerLink="/users/{{employee.user_ad}}">info</mat-icon>
+                    </strong>
+                  </div>
+                  <div *ngIf="(tickets | userspecificTickets:employee)?.length > 0" class="ticketUserHeadlineCount col-2">
+                    <span>{{(tickets | userspecificTickets:employee)?.length}}</span>
+                  </div>
+                </div>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <div class="expansion-body">
+              <div class="scrollWrapper">
+                <table mat-table [dataSource]="dataSource" [hidden]="(dataSource.data | userspecificTickets:employee).length === 0">
+
+                  <!-- Link Column -->
+                  <ng-container matColumnDef="link">
+                    <th mat-header-cell *matHeaderCellDef> Link</th>
+                    <td mat-cell *matCellDef="let ticket">
+                      <span class="source-icon source-icon--{{ticket.source}}"></span>
+                      <a href="{{ticket.link}}" target="_blank">{{ticket.link}}</a>
+                    </td>
+                  </ng-container>
+
+                  <!-- Delete Column -->
+                  <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let ticket">
+                      <mat-icon>delete</mat-icon>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <div *ngIf="(tickets | userspecificTickets:employee)?.length == 0" class="noTicketsMessageContainer">
+              <span class="noTicketsMessage">Keine offenen Tickets gefunden! <a
+                (click)="openTicketDialog()">Hinzufügen</a></span>
+                </div>
+              </div>
+
+              <div class="row" [hidden]="(dataSource.data | userspecificTickets:employee).length === 0">
+                <div class="col button-row">
+                  <button mat-fab (click)="openTicketDialog()">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+    </div>
+
+  </div>
+</main>

@@ -1,0 +1,48 @@
+<main>
+    <div class="overViewWrapper container gridViewContainer">
+
+        <app-messages></app-messages>
+
+        <div class="sortContainer">
+            <mat-form-field>
+                <mat-select [(value)]="sort_selected" (selectionChange)="sortEmployees($event.value)">
+                    <mat-option value="firstname_alphabetical-asc">Vorname (Aufsteigend)</mat-option>
+                    <mat-option value="firstname_alphabetical-desc">Vorname (Absteigend)</mat-option>
+                    <mat-option value="lastname_alphabetical-asc">Nachname (Aufsteigend)</mat-option>
+                    <mat-option value="lastname_alphabetical-desc">Nachname (Absteigend)</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="viewToggler" routerLink="/overview"><mat-icon>view_day</mat-icon></span>
+        </div>
+
+            <div class="row contentRow" [@fadeIn]='in'>
+
+                <div class="col-6 col-md-4 col-xl-3 singleContentTile" *ngFor="let employee of employees" routerLink="/users/{{employee.user_ad}}">
+                    <div class="tileInner" [ngStyle]="{background: 'url(../../assets/img/users/' + employee.user_image + ') no-repeat center/100%'}">
+                        <div class="innerContainer">
+
+                            <div class="innerContent">
+                                <strong>
+                                    {{employee.first_name}}
+                                    <br>
+                                    {{employee.last_name}}
+                                </strong>
+                                <br>
+                                <span *ngIf="(tickets | userspecificTickets:employee).length;else has_no_tickets">Alle {{(tickets | userspecificTickets:employee)?.length}} Tickets anzeigen...</span>
+
+                                <ng-template #has_no_tickets>
+                                    <span>Keine offenen Tickets</span>
+                                </ng-template>
+
+                            </div>
+
+                        </div>
+                        <div class="badgeCount" *ngIf="(tickets | userspecificTickets:employee)?.length > 0">{{(tickets | userspecificTickets:employee)?.length}}</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div>
+</main>

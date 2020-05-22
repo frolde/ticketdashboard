@@ -1,0 +1,21 @@
+.add-ticket-overlay-form {
+  padding-bottom: 24px;
+
+  .mat-dialog-content {
+    margin: 2rem -24px;
+
+    .mat-form-field {
+      display: block;
+    }
+  }
+
+  .mat-dialog-actions {
+    justify-content: center;
+
+    button {
+      &:first-of-type {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+main {
+  &.main--employee-detail {
+    padding: 5rem 0;
+
+    @include media-breakpoint-down(md) {
+      padding: 2rem 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: 0;
+    }
+
+    .overViewWrapper {
+      position: relative;
+      background-color: $white;
+      box-shadow: 5px 10px 40px -5px rgba(0, 0, 0, 0.35);
+      padding: 4rem 4rem 2rem 4rem;
+      margin-top: 5rem;
+
+      @include media-breakpoint-down(md) {
+        padding: 2rem;
+      }
+
+      @include media-breakpoint-down(xs) {
+        padding: 1rem;
+      }
+
+      .employee-detail--picture {
+        height: 10rem;
+        width: 10rem;
+        margin: -9rem auto 2rem;
+        background-color: #eee;
+        border-radius: 50%;
+        position: relative;
+
+        @include media-breakpoint-down(md) {
+          height: 8rem;
+          width: 8rem;
+          margin: -6rem auto 2rem;
+        }
+
+        @include media-breakpoint-down(xs) {
+          height: 5rem;
+          width: 5rem;
+          margin: -4rem auto 2rem;
+        }
+      }
+
+      .go-back-arrow {
+        color: $color-client-rot;
+        position: absolute;
+        top: 3rem;
+        left: 5rem;
+        transition: all 200ms ease;
+
+        &:hover {
+          color: $color-client-rot-accent;
+          cursor: pointer;
+        }
+
+        @include media-breakpoint-down(md) {
+          top: 2rem;
+          left: 2rem;
+        }
+
+        @include media-breakpoint-down(xs) {
+          top: 1rem;
+          left: 1rem;
+        }
+      }
+
+      .employee-detail--headline {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 300;
+
+        .ad-username {
+          font-weight: 400;
+        }
+      }
+
+      .employee-detail--headline-underline {
+        display: block;
+        width: 62%;
+        margin: 0.25rem auto 2rem;
+        border-width: 3px;
+        border-color: $color-client-rot;
+      }
+
+      @include datatable();
+
+      .empty-row {
+        strong {
+          font-size: 1.5rem;
+          color: $color-font-light;
+          text-align: center;
+          display: block;
+          font-weight: 300;
+          margin: 3rem 0;
+        }
+      }
+
+      @include add-ticket-button();
+    }
+  }
+}
